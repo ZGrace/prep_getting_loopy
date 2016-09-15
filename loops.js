@@ -11,25 +11,60 @@ Within the _FOR_ loop, use `console.log` to:
 /***bonus:** could you take the code inside of this FOR loop and encapsulate it inside of a function called `printContent` and still achieve the same result? This new function should accept two parameters.*/
 
 
+var Presidents = ["Washington", "Adams", "Jesfferson", "Madison", "Monroe"];
 
+for (var i = 0; i < Presidents.length; i++){
+	console.log ("Value of Index is: " + [i]/*[i] = index */+" Value at index: " + Presidents[i]/* variableName[i] = name */);
+}
+
+function printContent(blue){
+    for (var i = 0; i < blue.length; i++){
+        console.log ("Value of Index is: " + [i] +" Value at index: " + Presidents[i]);
+    }
+    return blue;
+}
+printContent(Presidents);
 
 
 /*Declare a variable named `stringOfNumbers` and set it's value to `''` (an empty String).*/
 
 /*Then write a _FOR_ loop that appends a Number value to that string starting from `10` all the way up to and including `20`.*/
 
+var stringOfNumbers = "";
+
+for (var i = 10; i < 21; i++){
+	stringOfNumbers += i;
+}
+
+console.log (stringOfNumbers);
 
 
 /***bonus:** could you take the code inside of this _FOR_ loop and encapsulate it inside of a function called `appendToString` and still achieve the same result?*/
 
+function appendToString(number){
+	for (var i = 10; i < 21; i++){
+number += i;
+	}
+	console.log (number);
+}
 
+appendToString(stringOfNumbers);
 
 /*## `Add only even numbrs to an array`
 Declare a variable named `evenNumberArray`.
 
 Use a _FOR_ loop to add only even numbers to an Array. Add `50` even numbers to the `evenNumberArray` starting with the value `0`.*/
 
-  
+var evenNumberArray = [];
+
+for (var i = 0; i < 51; i++){
+	if (i%2 === 0){
+		evenNumberArray.push(i);
+	}
+}
+
+console.log (evenNumberArray);
+
 
 /*## `Accessing only the odd indexes of an Array - 'Not Even Brah'`
 Someone forgot to fill out this array! Oh noes...
@@ -43,6 +78,15 @@ Example result should look like:
 ```javascript
 `[ 'turn' , 'nope' , 'down' , 'nope' , 'for' , 'nope' , 'what' ]`*/
 
+var oopsArray = ["turn", ,"down", ,"for", ,"what"];
+
+for (var i = 0; i < oopsArray.length; i++){
+	if (i%2 === 1){
+		oopsArray[i] = "nope";
+	}
+}
+
+console.log (oopsArray);
 
 
 /*## `Going backwards?!`
@@ -58,8 +102,13 @@ down
 nope
 turn
 ```*/
+var backwardsOopsArray = [];
 
+for (var i = oopsArray.length - 1; i >= 0; i--){
+	backwardsOopsArray.push (oopsArray[i]);
+}
 
+console.log (backwardsOopsArray);
 
 
 /*## `isNapTime`
@@ -74,8 +123,23 @@ Declare a function named `nap`. This function takes in a single parameter called
 
 Now, Write a FOR loop that iterates through the `napSchedule` array and runs the function `nap` while passing in the value at the current position of `napSchedule` into the `nap` function.*/
 
+var isNapTime = false;
+var napSchedule = [false, false, true, false, true, true];
+
+function nap (schedule){
+	if (schedule === true){
+		console.log ("ZzZzZzZzZz");
+	}
+	else{
+		console.log ("Gotta get to work!");
+		var isNapTime = true;
+	}
+}
 
 
+for (var i = 0; i < napSchedule.length; i++){
+	nap (napSchedule[i]);
+}
 
 /*Declare a variable named `valuesArray` and set it's value to be an array, `[99, 66, 829, 1941, 8, 76]`.
 
@@ -83,9 +147,17 @@ Declare a function named `copyArray` which takes two arguments: `originArray` an
 
 To get started, below your function declaration, call your function and pass in the two variables, `valuesArray` and `copyOfValuesArray`. After that, use `console.log` to to inspect the values of `valuesArray` and `copyOfValuesArray` to make sure they have the same values (which means your function worked!).*/
 
+var valuesArray = [99, 66, 829, 1941, 8, 76];
+var copyOfValuesArray = [];
 
+function copyArray (originArray, destinationArray){
+	for ( var i = 0; i < originArray.length; i++){
+		destinationArray.push (originArray[i]);
+	}
+return destinationArray;
+}
 
-
+console.log (copyArray(valuesArray, copyOfValuesArray));
 
 /*![final-boss](https://s3.amazonaws.com/uploads.hipchat.com/54891/2015941/zamX8AqbgYw0QJ8/giphy.gif)
 
@@ -106,3 +178,65 @@ Your function will iterate through the `class` argument and check each student's
 If the `enrolled` property is set to `true` then change that student's `graduated` property to `true`. Otherwise, if `enrolled` is set to `false` then change `enrolled` to `true` leaving `graduated` alone and unchanged.
 */
 
+var miscStorage = [[], "Carrots", 9, "Beets", {}, {name: "Todd B."}, "Mush"];
+
+
+function generateArrayOfString (storage){
+	var stringArray = [];
+	for (var i = 0; i < storage.length; i++){
+		if (typeof storage[i] === "string"){
+		stringArray.push (storage[i]);	
+		}
+	}
+return stringArray;
+}
+
+console.log (generateArrayOfString(miscStorage));
+
+var currentClass = [
+  {
+    name: 'Doug',
+    graduated: false,
+    enrolled: true
+  },
+  {
+    name: 'Pat',
+    graduated: false,
+    enrolled: false
+  },
+  {
+    name: 'Marsha',
+    graduated: false,
+    enrolled: false
+  },
+  {
+    name: 'Moira',
+    graduated: false,
+    enrolled: true
+  },
+  {
+    name: 'Ben',
+    graduated: false,
+    enrolled: true
+  },
+  {
+    name: 'Nigel the Giraffe',
+    graduated: false,
+    enrolled: false
+  },
+  {
+    name: 'Brandon the Shark',
+    graduated: false,
+    enrolled: true
+  }
+];
+
+function graduateAndSetNewClass (grads){
+	for (var i = 0; i < grads.length; i++){ 
+		if (grads[i].enrolled === true){
+			grads[i].graduated = true;
+		}
+	}
+	return grads;
+}
+console.log (graduateAndSetNewClass(currentClass));
